@@ -1,0 +1,7 @@
+.env
+subset_validated.json
+tasks_with_orgkind_anns.json
+pg
+ls_data
+docker-compose.yaml
+req.sh

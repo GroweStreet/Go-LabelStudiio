@@ -1,0 +1,65 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=${POSTGRE_NAME}
+      - POSTGRES_USER=${POSTGRE_USER}
+      - POSTGRES_PASSWORD=${POSTGRE_PASSWORD}
+    volumes:
+      - ./pg:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - al
+
+  app:
+    image: heartexlabs/label-studio:latest
+    env_file:
+      - ./.env
+    depends_on:
+      - postgres
+    environment:
+      - DJANGO_DB=${DJANGO_DB}
+      - POSTGRE_NAME=${POSTGRE_NAME}
+      - POSTGRE_USER=${POSTGRE_USER}
+      - POSTGRE_PASSWORD=${POSTGRE_PASSWORD}
+      - POSTGRE_HOST=${POSTGRE_HOST}
+      - POSTGRE_PORT=${POSTGRE_PORT}
+      - LABEL_STUDIO_USERNAME=${LABEL_STUDIO_USERNAME}
+      - LABEL_STUDIO_PASSWORD=${LABEL_STUDIO_PASSWORD}
+      - LABEL_STUDIO_USER_TOKEN=${LABEL_STUDIO_USER_TOKEN}
+      - LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED=${LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED}
+      - LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT=${LABEL_STUDIO_LOCAL_FILES_DOCUMENT_ROOT}
+      - LABEL_STUDIO_ENABLE_LEGACY_API_TOKEN=true
+      - SSRF_PROTECTION_ENABLED=${SSRF_PROTECTION_ENABLED}
+      - COLLECT_ANALYTICS=${COLLECT_ANALYTICS}
+      - USE_ENFORCE_CSRF_CHECKS=false
+    volumes:
+      - ./ls_data:/label-studio/data
+    expose:
+      - "8000"
+    command: label-studio-uwsgi --enable-legacy-api-token
+    restart: unless-stopped
+    networks: [al]     # <<< добавили
+
+  nginx:
+    image: heartexlabs/label-studio:latest
+    depends_on:
+      - app
+    environment:
+      - LABEL_STUDIO_HOST=${LABEL_STUDIO_HOST}
+    command: nginx
+    ports:
+      - "8080:8085"   # фронт наружу
+    volumes:
+      - ./ls_data:/label-studio/data:ro
+    restart: unless-stopped
+    networks:
+      al:
+        aliases:
+          - labelstudio  # <<< алиас для удобного имени
+
+
+networks:
+  al:
+    driver: bridge
+    name: al
