@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -19,6 +20,7 @@ func Update(id int, token string, annotation Annotation) (bool, error) {
 
 	url := fmt.Sprintf("http://%s:%s/api/annotations/%d/", config.Host(), config.Port(), id)
 	payload := bytes.NewReader(r)
+	log.Println()
 
 	req, _ := http.NewRequest(http.MethodPatch, url, payload)
 	req.Header.Add("Authorization", fmt.Sprintf("Token  %s", token))

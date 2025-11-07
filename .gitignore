@@ -2,6 +2,7 @@
 subset_validated.json
 tasks_with_orgkind_anns.json
 pg
-ls_data
+ls_data/media
 docker-compose.yaml
 req.sh
+.idea
