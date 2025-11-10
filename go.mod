@@ -1,4 +1,4 @@
-module Lib
+module github.com/GroweStreet/Go-LabelStudiio
 
 go 1.25.3
 
