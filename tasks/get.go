@@ -1,9 +1,9 @@
 package tasks
 
 import (
-	"github.com/GroweStreet/Go-LabelStudiio/config"
 	"encoding/json"
 	"fmt"
+	"github.com/GroweStreet/Go-LabelStudiio/config"
 	"net/http"
 )
 
