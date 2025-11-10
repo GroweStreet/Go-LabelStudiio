@@ -1,7 +1,7 @@
 package annotations
 
 type Annotation struct {
-	Id     int      `json:"id"`
+	Id     int      `json:"id,omitempty"`
 	Result []Result `json:"result"`
 }
 
