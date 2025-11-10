@@ -24,5 +24,5 @@ type Value struct {
 }
 
 type CreateRequest struct {
-	Result []Annotation `json:"result"`
+	Result []Result `json:"result"`
 }
