@@ -12,13 +12,15 @@ type Result struct {
 	Origin   string `json:"origin"`
 	ToName   string `json:"to_name"`
 	FromName string `json:"from_name"`
+	RegionId string `json:"region_id,omitempty"`
 }
 
 type Value struct {
-	End    int      `json:"end"`
-	Text   string   `json:"text"`
-	Start  int      `json:"start"`
-	Labels []string `json:"labels"`
+	End     int      `json:"end,omitempty"`
+	Text    string   `json:"text,omitempty"`
+	Start   int      `json:"start,omitempty"`
+	Labels  []string `json:"labels,omitempty"`
+	Choices []string `json:"choices,omitempty"`
 }
 
 type CreateRequest struct {

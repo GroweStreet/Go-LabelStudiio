@@ -9,14 +9,14 @@ import (
 	"net/http"
 )
 
-func Update(id int, token string, annotation Annotation) (bool, error) {
+func Update(annotationId int, token string, annotation Annotation) (bool, error) {
 
 	r, err := json.Marshal(annotation)
 	if err != nil {
 		return false, err
 	}
 
-	url := fmt.Sprintf("http://%s:%s/api/annotations/%d/", config.Host(), config.Port(), id)
+	url := fmt.Sprintf("http://%s:%s/api/annotations/%d/", config.Host(), config.Port(), annotationId)
 	payload := bytes.NewReader(r)
 	log.Println()
 

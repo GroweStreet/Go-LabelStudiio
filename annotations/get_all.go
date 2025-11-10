@@ -9,9 +9,9 @@ import (
 
 var annotations []Annotation
 
-func FetchAll(id int, token string) ([]Annotation, error) {
+func FetchAll(taskId int, token string) ([]Annotation, error) {
 
-	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/annotations/", config.Host(), config.Port(), id)
+	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/annotations/", config.Host(), config.Port(), taskId)
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 
 	if err != nil {

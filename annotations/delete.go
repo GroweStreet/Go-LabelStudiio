@@ -6,9 +6,9 @@ import (
 	"net/http"
 )
 
-func Delete(id int, token string) (bool, error) {
+func Delete(annotationId int, token string) (bool, error) {
 
-	url := fmt.Sprintf("http://%s:%s/api/annotations/%d/", config.Host(), config.Port(), id)
+	url := fmt.Sprintf("http://%s:%s/api/annotations/%d/", config.Host(), config.Port(), annotationId)
 	req, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {
 		return false, err

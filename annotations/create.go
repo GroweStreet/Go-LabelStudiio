@@ -8,14 +8,14 @@ import (
 	"net/http"
 )
 
-func Create(id int, request CreateRequest) (bool, error) {
+func Create(taskId int, request CreateRequest) (bool, error) {
 
 	r, err := json.Marshal(request)
 	if err != nil {
 		return false, err
 	}
 
-	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/annotations/", config.Host(), config.Port(), id)
+	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/annotations/", config.Host(), config.Port(), taskId)
 	payload := bytes.NewReader(r)
 
 	req, err := http.NewRequest(http.MethodPost, url, payload)
