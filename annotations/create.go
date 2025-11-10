@@ -22,8 +22,8 @@ func Create(taskId int, request CreateRequest) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Token %s", config.Token()))
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
+	req.Header.Set("Content-Type", "application/json")
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return false, err

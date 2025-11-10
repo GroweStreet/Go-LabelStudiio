@@ -16,8 +16,8 @@ func Update(id int) {
 	payload := strings.NewReader("{}")
 	req, _ := http.NewRequest(http.MethodPatch, url, payload)
 
-	req.Header.Add("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req.Header.Set("Content-Type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()

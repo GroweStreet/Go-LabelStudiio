@@ -21,8 +21,8 @@ func Update(annotationId int, token string, annotation Annotation) (bool, error)
 	log.Println()
 
 	req, _ := http.NewRequest(http.MethodPatch, url, payload)
-	req.Header.Add("Authorization", fmt.Sprintf("Token  %s", token))
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Set("Authorization", fmt.Sprintf("Token  %s", token))
+	req.Header.Set("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

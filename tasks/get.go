@@ -17,7 +17,7 @@ func GetTask(id int) (Task, error) {
 		return task, err
 	}
 
-	req.Header.Add("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return task, err

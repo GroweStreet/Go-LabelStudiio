@@ -21,8 +21,8 @@ func Create(prediction Prediction) {
 	payload := bytes.NewReader(r)
 
 	req, _ := http.NewRequest(http.MethodPost, url, payload)
-	req.Header.Add("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req.Header.Set("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

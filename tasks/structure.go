@@ -2,7 +2,7 @@ package tasks
 
 import (
 	"encoding/json"
-	"github.com/GroweStreet/Go-LabelStudiio/pkg/annotations"
+	"github.com/GroweStreet/Go-LabelStudiio/annotations"
 	"time"
 )
 

@@ -20,7 +20,7 @@ func List(projectId int, token string) (Tasks, error) {
 
 	url := fmt.Sprintf("http://%s:%s/api/tasks/?project=%d", config.Host(), config.Port(), projectId)
 	req, _ := http.NewRequest(http.MethodGet, url, nil)
-	req.Header.Add("Authorization", fmt.Sprintf("Token %s", token))
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", token))
 	res, _ := http.DefaultClient.Do(req)
 
 	defer res.Body.Close()
