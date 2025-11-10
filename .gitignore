@@ -6,3 +6,5 @@ ls_data/media
 docker-compose.yaml
 req.sh
 .idea
+Go-LabelStudiio
+main.go

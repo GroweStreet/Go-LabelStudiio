@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	ann "github.com/GroweStreet/Go-LabelStudiio/pkg/annotations"
 	config "github.com/GroweStreet/Go-LabelStudiio/config"
-	ann "github.com/GroweStreet/Go-LabelStudiio/internal/annotations"
 	"log"
 )
 
