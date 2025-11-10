@@ -1,9 +1,9 @@
 package tasks
 
 import (
-	"Lib/config"
 	"encoding/json"
 	"fmt"
+	"github.com/GroweStreet/Go-LabelStudiio/config"
 	"io"
 	"log"
 	"net/http"
@@ -11,8 +11,6 @@ import (
 )
 
 func Update(id int) {
-
-	config.Init("localhost", "8080")
 
 	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/", config.Host(), config.Port(), id)
 	payload := strings.NewReader("{}")

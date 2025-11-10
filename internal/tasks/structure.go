@@ -1,7 +1,7 @@
 package tasks
 
 import (
-	"Lib/internal/annotations"
+	"github.com/GroweStreet/Go-LabelStudiio/internal/annotations"
 	"encoding/json"
 	"time"
 )

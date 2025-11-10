@@ -1,7 +1,7 @@
 package tasks
 
 import (
-	"Lib/config"
+	"github.com/GroweStreet/Go-LabelStudiio/config"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -11,7 +11,6 @@ var task Task
 
 func GetTask(id int) (Task, error) {
 
-	config.Init("localhost", "8080")
 	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/", config.Host(), config.Port(), id)
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
