@@ -11,7 +11,6 @@ import (
 
 func Create(prediction Prediction) {
 
-	config.Init("localhost", "8080")
 	url := fmt.Sprintf("http://%s:%s/api/predictions/", config.Host(), config.Port())
 
 	r, err := json.Marshal(prediction)

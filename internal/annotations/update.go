@@ -11,8 +11,6 @@ import (
 
 func Update(id int, token string, annotation Annotation) (bool, error) {
 
-	config.Init(host, port)
-
 	r, err := json.Marshal(annotation)
 	if err != nil {
 		return false, err

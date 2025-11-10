@@ -9,7 +9,6 @@ import (
 
 func Delete(id int) {
 
-	config.Init("localhost", "8080")
 	url := fmt.Sprintf("http://%s:%s/api/predictions/%d/", config.Host(), config.Port(), id)
 
 	req, _ := http.NewRequest(http.MethodDelete, url, nil)

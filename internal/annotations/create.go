@@ -8,14 +8,13 @@ import (
 	"net/http"
 )
 
-func Create(id int, token string, request CreateRequest) (bool, error) {
+func Create(id int, request CreateRequest) (bool, error) {
 
 	r, err := json.Marshal(request)
 	if err != nil {
 		return false, err
 	}
 
-	config.Init(host, port)
 	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/annotations/", config.Host(), config.Port(), id)
 	payload := bytes.NewReader(r)
 
@@ -23,7 +22,7 @@ func Create(id int, token string, request CreateRequest) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	req.Header.Add("Authorization", fmt.Sprintf("Token %s", token))
+	req.Header.Add("Authorization", fmt.Sprintf("Token %s", config.Token()))
 	req.Header.Add("Content-Type", "application/json")
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

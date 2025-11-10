@@ -10,7 +10,7 @@ import (
 var annotations []Annotation
 
 func FetchAll(id int, token string) ([]Annotation, error) {
-	config.Init(host, port)
+
 	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/annotations/", config.Host(), config.Port(), id)
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 

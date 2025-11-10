@@ -8,7 +8,6 @@ import (
 
 func Delete(id int, token string) (bool, error) {
 
-	config.Init(host, port)
 	url := fmt.Sprintf("http://%s:%s/api/annotations/%d/", config.Host(), config.Port(), id)
 	req, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {

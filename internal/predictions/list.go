@@ -12,7 +12,6 @@ import (
 func List() ([]Prediction, error) {
 
 	var prediction []Prediction
-	config.Init("localhost", "8080")
 
 	url := fmt.Sprintf("http://%s:%s/api/predictions/", config.Host(), config.Port())
 

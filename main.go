@@ -1,7 +1,9 @@
 package main
 
 import (
+	"Lib/config"
 	ann "Lib/internal/annotations"
+	"fmt"
 	"log"
 )
 
@@ -9,6 +11,8 @@ var err error
 
 func main() {
 
+	config.Init("localhost", "8080", "6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	
 	//pred := predictions.Prediction{
 	//	Id: 0,
 	//	Result: []predictions.Result{{
@@ -49,13 +53,28 @@ func main() {
 	//}
 	//fmt.Println(tasks)
 
-	b, err := ann.Delete(135422, "6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	//b, err := ann.Delete(135422, "6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//println(b)
+	req := ann.CreateRequest{Result: []ann.Annotation{{
+		Id: 0,
+		Result: []ann.Result{{
+			Id:       "",
+			Type:     "",
+			Value:    ann.Value{},
+			Origin:   "",
+			ToName:   "",
+			FromName: "",
+		}},
+	}}}
+
+	b, err := ann.Create(67717, req)
 	if err != nil {
 		log.Fatal(err)
 	}
-	println(b)
-	//b := ann.Create(67717)
-	//fmt.Println(b)
+	fmt.Println(b)
 
 	//tasks.GetTask(67721)
 	//task, _ := tasks.List(1, "6a2e95d769a7cdf02097918de4f2574df0804d7c")
