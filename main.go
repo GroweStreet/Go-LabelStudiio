@@ -1,9 +1,9 @@
 package main
 
 import (
-	"Lib/config"
-	ann "Lib/internal/annotations"
 	"fmt"
+	config "github.com/GroweStreet/Go-LabelStudiio/config"
+	ann "github.com/GroweStreet/Go-LabelStudiio/internal/annotations"
 	"log"
 )
 
@@ -12,7 +12,7 @@ var err error
 func main() {
 
 	config.Init("localhost", "8080", "6a2e95d769a7cdf02097918de4f2574df0804d7c")
-	
+
 	//pred := predictions.Prediction{
 	//	Id: 0,
 	//	Result: []predictions.Result{{

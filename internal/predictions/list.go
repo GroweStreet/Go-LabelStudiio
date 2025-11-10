@@ -1,9 +1,9 @@
 package predictions
 
 import (
-	"Lib/config"
 	"encoding/json"
 	"fmt"
+	config "github.com/GroweStreet/Go-LabelStudiio/config"
 	_ "io"
 	"log"
 	"net/http"

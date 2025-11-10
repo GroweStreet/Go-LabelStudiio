@@ -1,9 +1,9 @@
 package annotations
 
 import (
-	"Lib/config"
 	"encoding/json"
 	"fmt"
+	config "github.com/GroweStreet/Go-LabelStudiio/config"
 	"net/http"
 )
 

@@ -1,8 +1,8 @@
 package predictions
 
 import (
-	"Lib/config"
 	"fmt"
+	config "github.com/GroweStreet/Go-LabelStudiio/config"
 	"io"
 	"net/http"
 )
