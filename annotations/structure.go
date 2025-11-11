@@ -16,9 +16,9 @@ type Result struct {
 }
 
 type Value struct {
-	End     int      `json:"end,omitempty"`
-	Text    string   `json:"text,omitempty"`
-	Start   int      `json:"start,omitempty"`
+	End     int      `json:"end"`
+	Text    string   `json:"text"`
+	Start   int      `json:"start"`
 	Labels  []string `json:"labels,omitempty"`
 	Choices []string `json:"choices,omitempty"`
 }

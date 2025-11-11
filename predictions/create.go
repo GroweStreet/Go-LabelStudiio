@@ -5,31 +5,34 @@ import (
 	"encoding/json"
 	"fmt"
 	config "github.com/GroweStreet/Go-LabelStudiio/config"
-	"log"
 	"net/http"
 )
 
-func Create(prediction Prediction) {
+func Create(prediction Prediction) (bool, error) {
 
 	url := fmt.Sprintf("http://%s:%s/api/predictions/", config.Host(), config.Port())
 
 	r, err := json.Marshal(prediction)
 	if err != nil {
-		panic(err)
+		return false, err
 	}
 
 	payload := bytes.NewReader(r)
 
-	req, _ := http.NewRequest(http.MethodPost, url, payload)
-	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req, err := http.NewRequest(http.MethodPost, url, payload)
+	if err != nil {
+		return false, err
+	}
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 	req.Header.Set("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
-		log.Fatal(err)
+		return false, err
 	}
 
 	defer res.Body.Close()
+	return res.StatusCode == http.StatusCreated, nil
 	//body, err := io.ReadAll(res.Body)
 	//if err != nil {
 	//	log.Fatal(err)

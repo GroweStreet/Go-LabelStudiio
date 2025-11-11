@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func Update(annotationId int, token string, annotation Annotation) (bool, error) {
+func Update(annotationId int, annotation Annotation) (bool, error) {
 
 	r, err := json.Marshal(annotation)
 	if err != nil {
@@ -21,7 +21,7 @@ func Update(annotationId int, token string, annotation Annotation) (bool, error)
 	log.Println()
 
 	req, _ := http.NewRequest(http.MethodPatch, url, payload)
-	req.Header.Set("Authorization", fmt.Sprintf("Token  %s", token))
+	req.Header.Set("Authorization", fmt.Sprintf("Token  %s", config.Token()))
 	req.Header.Set("Content-Type", "application/json")
 
 	res, err := http.DefaultClient.Do(req)

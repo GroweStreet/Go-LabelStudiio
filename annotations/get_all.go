@@ -17,7 +17,7 @@ func FetchAll(taskId int, token string) ([]Annotation, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Authorization", fmt.Sprintf("Token %s", token))
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {

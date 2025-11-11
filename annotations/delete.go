@@ -14,7 +14,7 @@ func Delete(annotationId int, token string) (bool, error) {
 		return false, err
 	}
 
-	req.Header.Set("Authorization", fmt.Sprintf("Token %s", token))
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return false, err

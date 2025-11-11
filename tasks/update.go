@@ -11,12 +11,12 @@ import (
 )
 
 func Update(id int) {
-
+	var task Task
 	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/", config.Host(), config.Port(), id)
 	payload := strings.NewReader("{}")
 	req, _ := http.NewRequest(http.MethodPatch, url, payload)
 
-	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 	req.Header.Set("Content-Type", "application/json")
 
 	res, _ := http.DefaultClient.Do(req)

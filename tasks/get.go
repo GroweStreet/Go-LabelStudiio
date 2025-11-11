@@ -7,17 +7,15 @@ import (
 	"net/http"
 )
 
-var task Task
-
 func GetTask(id int) (Task, error) {
-
+	var task Task
 	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/", config.Host(), config.Port(), id)
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return task, err
 	}
 
-	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return task, err

@@ -1,27 +1,37 @@
 package predictions
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	config "github.com/GroweStreet/Go-LabelStudiio/config"
-	"io"
 	"net/http"
-	"strings"
 )
 
-func Update(id int) {
+func Update(predictionId int, prediction Prediction) (bool, error) {
 
-	url := fmt.Sprintf("http://%s:%s/api/predictions/%d/", config.Host(), config.Port(), id)
+	r, err := json.Marshal(prediction)
+	url := fmt.Sprintf("http://%s:%s/api/predictions/%d/", config.Host(), config.Port(), predictionId)
 
-	payload := strings.NewReader("{\n  \"model_version\": \"yolo-v8\",\n  \"result\": [\n    {\n      \"from_name\": \"bboxes\",\n      \"image_rotation\": 0,\n      \"original_height\": 1080,\n      \"original_width\": 1920,\n      \"to_name\": \"image\",\n      \"type\": \"rectanglelabels\",\n      \"value\": {\n        \"height\": 60,\n        \"rotation\": 0,\n        \"values\": {\n          \"rectanglelabels\": [\n            \"Person\"\n          ]\n        },\n        \"width\": 50,\n        \"x\": 20,\n        \"y\": 30\n      }\n    }\n  ],\n  \"score\": 0.95\n}")
-
-	req, _ := http.NewRequest(http.MethodPatch, url, payload)
-	req.Header.Set("Authorization", "Token 6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	payload := bytes.NewReader(r)
+	req, err := http.NewRequest(http.MethodPatch, url, payload)
+	if err != nil {
+		return false, err
+	}
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 	req.Header.Set("Content-Type", "application/json")
 
-	res, _ := http.DefaultClient.Do(req)
-	defer res.Body.Close()
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, err
+	}
+	err = res.Body.Close()
+	if err != nil {
+		return false, err
+	}
 
-	body, _ := io.ReadAll(res.Body)
-	fmt.Println(res)
-	fmt.Println(string(body))
+	return res.StatusCode == http.StatusOK, nil
+	//body, _ := io.ReadAll(res.Body)
+	//fmt.Println(res)
+	//fmt.Println(string(body))
 }

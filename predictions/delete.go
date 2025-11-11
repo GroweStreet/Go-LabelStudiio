@@ -7,17 +7,27 @@ import (
 	"net/http"
 )
 
-func Delete(id int) {
+func Delete(id int) (bool, error) {
 
 	url := fmt.Sprintf("http://%s:%s/api/predictions/%d/", config.Host(), config.Port(), id)
 
-	req, _ := http.NewRequest(http.MethodDelete, url, nil)
-	req.Header.Set("Authorization", "Token  6a2e95d769a7cdf02097918de4f2574df0804d7c")
+	req, err := http.NewRequest(http.MethodDelete, url, nil)
+	if err != nil {
+		return false, err
+	}
+	req.Header.Set("Authorization", fmt.Sprintf("Token %s", config.Token()))
 
-	res, _ := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, err
+	}
 	defer res.Body.Close()
 
-	body, _ := io.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		return false, err
+	}
 	fmt.Println(res)
 	fmt.Println(string(body))
+	return res.StatusCode == 200, nil
 }
