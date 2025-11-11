@@ -31,7 +31,4 @@ func Update(predictionId int, prediction Prediction) (bool, error) {
 	}
 
 	return res.StatusCode == http.StatusOK, nil
-	//body, _ := io.ReadAll(res.Body)
-	//fmt.Println(res)
-	//fmt.Println(string(body))
 }

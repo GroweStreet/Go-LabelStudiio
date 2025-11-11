@@ -33,10 +33,4 @@ func Create(prediction Prediction) (bool, error) {
 
 	defer res.Body.Close()
 	return res.StatusCode == http.StatusCreated, nil
-	//body, err := io.ReadAll(res.Body)
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//fmt.Println(res)
-	//fmt.Println(string(body))
 }

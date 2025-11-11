@@ -27,8 +27,5 @@ func List() (bool, error) {
 		return false, err
 	}
 	return res.StatusCode == http.StatusOK, nil
-	//body, _ := io.ReadAll(res.Body)
-	//fmt.Println(res)
-	//fmt.Println(string(body))
 
 }
