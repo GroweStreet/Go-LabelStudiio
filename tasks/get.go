@@ -7,9 +7,9 @@ import (
 	"net/http"
 )
 
-func GetTask(id int) (Task, error) {
+func GetTask(taskId int) (Task, error) {
 	var task Task
-	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/", config.Host(), config.Port(), id)
+	url := fmt.Sprintf("http://%s:%s/api/tasks/%d/", config.Host(), config.Port(), taskId)
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return task, err
